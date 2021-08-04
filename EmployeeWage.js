@@ -11,6 +11,7 @@ let work_Days = 0;
 let empDailyWageArray = new Array();
 let empDailyWageMap = new Map();
 let empDailyHrsMap = new Map();
+let empDailyHrsWageArr = new Array();
 function getWorkingHours(empCheck){
     switch (empCheck) {
         case IS_PART_TIME:
@@ -32,6 +33,15 @@ while (totalEmpHrs <= MAX_HRS_IN_MONTH && work_Days<NUM_OF_WORK_DAYS){
     empDailyWageArray.push(calcDailyWage(empHrs));
     empDailyWageMap.set(work_Days, calcDailyWage(empHrs));
     empDailyHrsMap.set(work_Days,empHrs);
+    empDailyHrsWageArr.push({
+        dayNumb:work_Days,
+        dailyHrs:empHrs,
+        dailyWage:calcDailyWage(empHrs),
+        toString(){
+            return '\nDay:'+this.dayNumb+' -> Working hours: '+this.dailyHrs+
+            ', Wage Earned: '+this.dailyWage
+        },
+    });
 }
 let empWage = calcDailyWage(totalEmpHrs);
 console.log("Total Days: "+work_Days+"\nTotal Hours: "+totalEmpHrs+
@@ -106,3 +116,6 @@ empDailyHrsMap.forEach( (value, key, map) => {
 console.log("Full Working Days: "+fullWorkingDays+
 "\nPart Working Days: "+partWorkingDays+
 "\nNon Working Days: "+nonWorkingDays);
+
+//Displaying Dilay Hours and Wages using Object
+console.log("\nDisplaying Daily Hours and Wage:"+empDailyHrsWageArr);
