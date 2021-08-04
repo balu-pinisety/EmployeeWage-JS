@@ -119,3 +119,25 @@ console.log("Full Working Days: "+fullWorkingDays+
 
 //Displaying Dilay Hours and Wages using Object
 console.log("\nDisplaying Daily Hours and Wage:"+empDailyHrsWageArr);
+
+//Calculating Total Wage and Total Hours Using Object and Arrow
+let totalwages = empDailyHrsWageArr.filter(dailyHrsWage => dailyHrsWage.dailyWage > 0)
+.reduce((totalwages,dailyHrsWage) => totalwages += dailyHrsWage.dailyWage,0);
+let totalHrs = empDailyHrsWageArr.filter(dailyHrsWage => dailyHrsWage.dailyWage > 0)
+.reduce((totalHrs,dailyHrsWage) => totalHrs += dailyHrsWage.dailyHrs,0);
+console.log("\nTotal Emp Wage(using Object): "+totalwages+"\nTotal Hours Worked: "+totalHours);
+
+//Displaying Full Working Days using forEach
+console.log("\nLogging Full Working days:");
+empDailyHrsWageArr.filter(dailyHrsWage => dailyHrsWage.dailyHrs == 8)
+.forEach(dailyHrsWage => console.log(dailyHrsWage.toString()));
+
+//Displaying Part Working Days using Map and object
+let partWorkingDayStrings = empDailyHrsWageArr.filter(dailyHrsWage => dailyHrsWage.dailyHrs == 4)
+.map(dailyHrsWage => dailyHrsWage.toString());
+console.log("\nPart Working Days: "+partWorkingDayStrings);
+
+//Displaying Non Working Days using Map Function
+let nonWorkingDayNums = empDailyHrsWageArr.filter(dailyHrsWage => dailyHrsWage.dailyHrs == 0)
+.map(dailyHrsWage => dailyHrsWage.dayNumb);
+console.log("\nNon Working Days: "+nonWorkingDayNums);
